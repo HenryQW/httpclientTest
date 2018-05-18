@@ -1,0 +1,15 @@
+version: '3'
+
+services:
+  testapi:
+    image: testapi
+    build:
+      context: .
+      dockerfile: TestAPI/Dockerfile
+
+  testclient:
+    image: testclient
+    build:
+      context: .
+      dockerfile: TestClient/Dockerfile
+
