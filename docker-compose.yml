@@ -6,10 +6,26 @@ services:
     build:
       context: .
       dockerfile: TestAPI/Dockerfile
-
+      args:
+        - http_proxy=http://proxy:1080
+        - https_proxy=http://proxy:1080
+        - no_proxy=localhost
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - http_proxy=http://proxy:1080
+      - https_proxy=http://proxy:1080
+      - no_proxy=localhost
   testclient:
     image: testclient
     build:
       context: .
       dockerfile: TestClient/Dockerfile
-
+      args:
+        - http_proxy=http://proxy:1080
+        - https_proxy=http://proxy:1080
+        - no_proxy=localhost,testapi
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - http_proxy=http://proxy:1080
+      - https_proxy=http://proxy:1080
+      - no_proxy=localhost,testapi
